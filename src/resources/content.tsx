@@ -1,5 +1,5 @@
 import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
-import { Line, Row, Text } from "@once-ui-system/core";
+import {Line, Row, Text} from "@once-ui-system/core";
 
 const person: Person = {
   firstName: "Jules",
@@ -7,13 +7,13 @@ const person: Person = {
   name: `Jules Fonseca`,
   role: "Software Engineer",
   avatar: "/images/avatar.jpg",
-  email: "jules.fonseca@laposte.net",
+  email: "jules.fonseca@diiage.org",
   location: "Europe/Paris", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: ["French", "English"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter: Newsletter = {
-  display: true,
+  display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: <>My weekly newsletter about creativity and engineering</>,
 };
@@ -42,7 +42,7 @@ const home: Home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Engineering solutions for tomorrow</>,
+  headline: <>Building reliable software from idea to production</>,
   featured: {
     display: false,
     title: (
@@ -54,12 +54,13 @@ const home: Home = {
         </Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work/laruche-logistique-custom-wms-v1",
   },
   subline: (
     <>
-    Hi, I'm Jules, welcome to my portfolio! <br/> I'm a software engineer with a passion for building efficient solutions that enhance user experiences and drive business growth.
-</>
+      Hi, I'm Jules. I build business software with a strong product mindset. <br />
+      My experience covers client delivery, architecture, testing, and agile teamwork.
+    </>
   ),
 };
 
@@ -76,7 +77,7 @@ const about: About = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -84,8 +85,9 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Jules is a software engineer based in Dijon, France. <br/>
-        With a background in software engineering, he has a passion for building efficient solutions that enhance user experiences and drive business growth. <br/>
+        I am a French software engineer based in Dijon, currently finishing a Master's degree in software engineering.
+        <br />
+        I have close to 4 years of professional experience across product features, bug fixing, testing, and end-to-end delivery.
       </>
     ),
   },
@@ -95,40 +97,63 @@ const about: About = {
     experiences: [
       {
         company: "Planet Bourgogne",
-        timeframe: "2022 - Present",
-        role: "Software Engineer",
+        timeframe: "2023 - Present",
+        role: "Software Engineer Apprentice",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Contributed to multiple client products (Carrefour Pro, CEBFC, Laruche) through features, bug fixes, and test coverage.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Worked as the main developer on a custom WMS for Laruche Logistique, delivered as a V1 in 6 weeks with one teammate.
+          </>,
+          <>
+            Delivered code in an agile setup with reviews, sprint rituals, and collaboration with business stakeholders.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
+        tags: [
+          {name: "PHP", icon: "php"},
+          {name: "Symfony", icon: "symfony"},
+          {name: "React", icon: "react"},
+          {name: "Docker", icon: "docker"},
+          {name: "Gitlab", icon: "gitlab"},
         ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Ideal Solutions",
+        timeframe: "Sep 2022 - Aug 2023",
+        role: "Software Engineer Apprentice",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Built internal and customer features with Vue.js, Angular, Express.js, Node.js, PHP, and Ionic.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Contributed to a custom multiplatform app used by city halls to publish information to citizens.
+          </>,
+          <>
+            Applied unit testing, agile practices, and code reviews in day-to-day delivery.
+          </>,
+        ],
+        tags: [
+          {name: "JavaScript", icon: "javascript"},
+          {name: "Angular", icon: "angular"},
+          {name: "Vue.js", icon: "vue"},
+          {name: "Node.js", icon: "nodejs"},
+          {name: "PHP", icon: "php"},
+          {name: "Github", icon: "github"},
+        ],
+        images: [],
+      },
+      {
+        company: "Ideal Solutions",
+        timeframe: "2022 (6 weeks)",
+        role: "Software Engineer Intern",
+        achievements: [
+          <>
+            Completed my first software engineering internship and shipped customer-focused features in production contexts.
+          </>,
+          <>
+            Strengthened practical engineering skills and confirmed my long-term path in software development.
           </>,
         ],
         images: [],
@@ -140,12 +165,20 @@ const about: About = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "DIIAGE - Master's level, Expert in Computer Systems",
+        description: <>2023 - 2026, Dijon (France). Project-based learning in software engineering and DevOps.</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Mathias High School - BTS SIO (SLAM)",
+        description: <>2021 - 2023, Chalon-sur-Saone (France). Major of the promotion.</>,
+      },
+      {
+        name: "H. Parriat High School - General High School Degree",
+        description: <>2018 - 2021, Montceau-les-Mines (France). Specialties: Physics-Chemistry and Engineering Science.</>,
+      },
+      {
+        name: "Stanford University / DeepLearning.AI - ML Specialization (Online)",
+        description: <>Completed in 2024 on Coursera (Supervised, Advanced, and Unsupervised learning tracks).</>,
       },
     ],
   },
@@ -154,60 +187,58 @@ const about: About = {
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
+        title: "Full-stack web development",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>Building production-ready features with JavaScript/TypeScript or PHP and modern web frameworks on both frontend and backend.</>
         ),
         tags: [
-          {
-            name: "Figma",
-            icon: "figma",
-          },
+          {name: "TypeScript", icon: "typescript"},
+          {name: "JavaScript", icon: "javascript"},
+          {name: "Node.js", icon: "nodejs"},
+          {name: "React", icon: "react"},
+          {name: "Angular", icon: "angular"},
+          {name: "Vue", icon: "vue"},
+          {name: "PHP", icon: "php"},
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        title: "Next.js",
+        title: "API engineering",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>Designing and implementing APIs and business services with C# and ASP.NET in team-based projects.</>
         ),
         tags: [
-          {
-            name: "JavaScript",
-            icon: "javascript",
-          },
-          {
-            name: "Next.js",
-            icon: "nextjs",
-          },
-          {
-            name: "Supabase",
-            icon: "supabase",
-          },
+          {name: ".NET", icon: "dotnet"},
+          {name: "ASP.NET"},
+          {name: "MySQL", icon: "mysql"},
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
+        images: [],
+      },
+      {
+        title: "Architecture, quality, and delivery",
+        description: (
+          <>Applying clean architecture, testing strategies (UT/IT/E2E), CI/CD practices, and agile delivery workflows.</>
+        ),
+        tags: [
+          {name: "Docker", icon: "docker"},
+          {name: "Clean Architecture"},
+          {name: "Unit Testing"},
+          {name: "CI/CD"},
+          {name: "Agile"},
         ],
+        images: [],
+      },
+      {
+        title: "AI and data curiosity",
+        description: (
+          <>Exploring practical AI through coursework and projects, including generative AI and machine learning fundamentals.</>
+        ),
+        tags: [
+          {name: "Python", icon: "python"},
+          {name: "Machine Learning"},
+          {name: "Generative AI"},
+        ],
+        images: [],
       },
     ],
   },

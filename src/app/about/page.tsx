@@ -234,6 +234,15 @@ export default function About() {
                         ),
                       )}
                     </Column>
+                    {experience.tags && experience.tags.length > 0 && (
+                        <Row wrap gap="8" paddingTop="8">
+                          {experience.tags.map((tag, tagIndex) => (
+                              <Tag key={`${experience.company}-${experience.role}-${tagIndex}`} size="l" prefixIcon={tag.icon}>
+                                {tag.name}
+                              </Tag>
+                          ))}
+                        </Row>
+                    )}
                     {experience.images && experience.images.length > 0 && (
                       <Row fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
                         {experience.images.map((image, index) => (

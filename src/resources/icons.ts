@@ -1,35 +1,61 @@
-import { IconType } from "react-icons";
+import {IconType} from "react-icons";
 
 import {
-  HiArrowUpRight,
-  HiOutlineLink,
-  HiArrowTopRightOnSquare,
-  HiEnvelope,
-  HiCalendarDays,
   HiArrowRight,
+  HiArrowTopRightOnSquare,
+  HiArrowUpRight,
+  HiCalendarDays,
+  HiEnvelope,
+  HiOutlineDocument,
   HiOutlineEye,
   HiOutlineEyeSlash,
-  HiOutlineDocument,
   HiOutlineGlobeAsiaAustralia,
+  HiOutlineLink,
   HiOutlineRocketLaunch,
 } from "react-icons/hi2";
 
 import {
-  PiHouseDuotone,
-  PiUserCircleDuotone,
-  PiGridFourDuotone,
   PiBookBookmarkDuotone,
+  PiGridFourDuotone,
+  PiHouseDuotone,
   PiImageDuotone,
+  PiUserCircleDuotone,
 } from "react-icons/pi";
 
 import {
-  SiJavascript,
-  SiNextdotjs,
+  SiAngular,
+  SiDocker,
+  SiDotnet,
   SiFigma,
+  SiGitlab,
+  SiJavascript,
+  SiMysql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPhp,
+  SiPython,
+  SiReact,
   SiSupabase,
+  SiSymfony,
+  SiTypescript,
+  SiVite,
+  SiVuedotjs,
 } from "react-icons/si";
 
-import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaInstagram, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram, } from "react-icons/fa6";
+import {
+  FaDiscord,
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaPinterest,
+  FaReddit,
+  FaTelegram,
+  FaThreads,
+  FaWhatsapp,
+  FaX,
+  FaXTwitter,
+} from "react-icons/fa6";
 
 export const iconLibrary: Record<string, IconType> = {
   arrowUpRight: HiArrowUpRight,
@@ -55,8 +81,21 @@ export const iconLibrary: Record<string, IconType> = {
   document: HiOutlineDocument,
   rocket: HiOutlineRocketLaunch,
   javascript: SiJavascript,
+  typescript: SiTypescript,
+  dotnet: SiDotnet,
+  python: SiPython,
+  angular: SiAngular,
+  vue: SiVuedotjs,
+  nodejs: SiNodedotjs,
+  docker: SiDocker,
+  mysql: SiMysql,
+  vite: SiVite,
+  php: SiPhp,
+  symfony: SiSymfony,
+  react: SiReact,
   nextjs: SiNextdotjs,
   supabase: SiSupabase,
+  gitlab: SiGitlab,
   figma: SiFigma,
   facebook: FaFacebook,
   pinterest: FaPinterest,
