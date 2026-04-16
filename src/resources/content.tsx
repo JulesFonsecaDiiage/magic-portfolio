@@ -125,7 +125,7 @@ const about: About = {
         role: "Software Engineer Apprentice",
         achievements: [
           <>
-            Built internal and customer features with Vue.js, Angular, Express.js, Node.js, PHP, and Ionic.
+            Built internal and customer features with Express.js, Node.js, PHP, Vue.js, Angular, and Ionic.
           </>,
           <>
             Contributed to a custom multiplatform app used by city halls to publish information to citizens.
@@ -169,11 +169,11 @@ const about: About = {
         description: <>2023 - 2026, Dijon (France). Project-based learning in software engineering and DevOps.</>,
       },
       {
-        name: "Mathias High School - BTS SIO (SLAM)",
-        description: <>2021 - 2023, Chalon-sur-Saone (France). Major of the promotion.</>,
+        name: "Mathias High School - BTS SIO – SLAM (2-year applied degree in Software Development)",
+        description: <>2021 - 2023, Chalon-sur-Saone (France). <b><i>Valedictorian.</i></b></>,
       },
       {
-        name: "H. Parriat High School - General High School Degree",
+        name: "H. Parriat High School - French Baccalaureate",
         description: <>2018 - 2021, Montceau-les-Mines (France). Specialties: Physics-Chemistry and Engineering Science.</>,
       },
       {
@@ -217,7 +217,7 @@ const about: About = {
       {
         title: "Architecture, quality, and delivery",
         description: (
-          <>Applying clean architecture, testing strategies (UT/IT/E2E), CI/CD practices, and agile delivery workflows.</>
+          <>Applying clean architecture, DI, testing strategies (UT/IT/E2E), CI/CD practices, and agile delivery workflows.</>
         ),
         tags: [
           {name: "Docker", icon: "docker"},
@@ -229,7 +229,7 @@ const about: About = {
         images: [],
       },
       {
-        title: "AI and data curiosity",
+        title: "Applied AI & Machine Learning",
         description: (
           <>Exploring practical AI through coursework and projects, including generative AI and machine learning fundamentals.</>
         ),
@@ -257,7 +257,7 @@ const work: Work = {
   path: "/work",
   label: "Work",
   title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
+  description: `Dev projects and case studies by ${person.name}`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /work routes
 };

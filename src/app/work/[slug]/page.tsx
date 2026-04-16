@@ -4,15 +4,12 @@ import {
   Meta,
   Schema,
   AvatarGroup,
-  Button,
   Column,
-  Flex,
   Heading,
   Media,
   Text,
   SmartLink,
   Row,
-  Avatar,
   Line,
 } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
@@ -20,6 +17,9 @@ import { formatDate } from "@/utils/formatDate";
 import { ScrollToHash, CustomMDX } from "@/components";
 import { Metadata } from "next";
 import { Projects } from "@/components/work/Projects";
+import { buildAlternates, getLocalizedPath, getRequestLocale } from "@/i18n/request";
+import { getMessages } from "@/i18n/messages";
+import { Locale } from "@/i18n/config";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(["src", "app", "work", "projects"]);
@@ -33,6 +33,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string | string[] }>;
 }): Promise<Metadata> {
+  const locale = await getRequestLocale();
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug)
     ? routeParams.slug.join("/")
@@ -43,20 +44,26 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  return Meta.generate({
+  const metadata = Meta.generate({
     title: post.metadata.title,
     description: post.metadata.summary,
     baseURL: baseURL,
     image: post.metadata.image || `/api/og/generate?title=${post.metadata.title}`,
-    path: `${work.path}/${post.slug}`,
+    path: getLocalizedPath(`${work.path}/${post.slug}`, locale),
   });
+
+  return { ...metadata, alternates: buildAlternates(`${work.path}/${post.slug}`) };
 }
 
-export default async function Project({
-  params,
-}: {
+export default async ({
+                        params,
+                        locale: localeProp,
+                      }: {
   params: Promise<{ slug: string | string[] }>;
-}) {
+  locale?: Locale;
+}) => {
+  const locale = localeProp ?? (await getRequestLocale());
+  const messages = getMessages(locale);
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug)
     ? routeParams.slug.join("/")
@@ -93,8 +100,8 @@ export default async function Project({
         }}
       />
       <Column maxWidth="s" gap="16" horizontal="center" align="center">
-        <SmartLink href="/work">
-          <Text variant="label-strong-m">Projects</Text>
+        <SmartLink href={getLocalizedPath(work.path, locale)}>
+          <Text variant="label-strong-m">{messages.nav.projects}</Text>
         </SmartLink>
         <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="12">
           {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
@@ -127,9 +134,9 @@ export default async function Project({
       <Column fillWidth gap="40" horizontal="center" marginTop="40">
         <Line maxWidth="40" />
         <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
-          Related projects
+          {messages.work.related}
         </Heading>
-        <Projects exclude={[post.slug]} range={[2]} />
+        <Projects exclude={[post.slug]} range={[2]} locale={locale} />
       </Column>
       <ScrollToHash />
     </Column>

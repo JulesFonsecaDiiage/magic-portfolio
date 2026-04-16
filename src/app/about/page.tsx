@@ -12,22 +12,34 @@ import {
   Schema,
   Row,
 } from "@once-ui-system/core";
-import { baseURL, about, person, social } from "@/resources";
+import { baseURL, social } from "@/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import React from "react";
+import { buildAlternates, getLocalizedPath, getRequestLocale } from "@/i18n/request";
+import type { Metadata } from "next";
+import { getLocalizedContent } from "@/i18n/content";
+import { Locale } from "@/i18n/config";
 
-export async function generateMetadata() {
-  return Meta.generate({
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  const { about } = getLocalizedContent(locale);
+  const metadata = Meta.generate({
     title: about.title,
     description: about.description,
     baseURL: baseURL,
     image: `/api/og/generate?title=${encodeURIComponent(about.title)}`,
-    path: about.path,
+    path: getLocalizedPath(about.path, locale),
   });
+
+  return { ...metadata, alternates: buildAlternates(about.path) };
 }
 
-export default function About() {
+type AboutProps = { locale?: Locale };
+
+export default async ({locale: localeProp}: AboutProps = {}) => {
+  const locale = localeProp ?? (await getRequestLocale());
+  const { about, person } = getLocalizedContent(locale);
   const structure = [
     {
       title: about.intro.title,

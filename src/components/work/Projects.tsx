@@ -1,13 +1,21 @@
 import { getPosts } from "@/utils/utils";
 import { Column } from "@once-ui-system/core";
 import { ProjectCard } from "@/components";
+import { getRequestLocale } from "@/i18n/request";
+import { getMessages } from "@/i18n/messages";
+import { toLocalePath } from "@/i18n/utils";
+import { Locale } from "@/i18n/config";
 
 interface ProjectsProps {
   range?: [number, number?];
   exclude?: string[];
+  locale?: Locale;
 }
 
-export function Projects({ range, exclude }: ProjectsProps) {
+export async function Projects({ range, exclude, locale: localeProp }: ProjectsProps) {
+  const locale = localeProp ?? (await getRequestLocale());
+  const messages = getMessages(locale);
+
   let allProjects = getPosts(["src", "app", "work", "projects"]);
 
   // Exclude by slug (exact match)
@@ -29,13 +37,15 @@ export function Projects({ range, exclude }: ProjectsProps) {
         <ProjectCard
           priority={index < 2}
           key={post.slug}
-          href={`/work/${post.slug}`}
+          href={toLocalePath(`/work/${post.slug}`, locale)}
           images={post.metadata.images}
           title={post.metadata.title}
           description={post.metadata.summary}
           content={post.content}
           avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
           link={post.metadata.link || ""}
+          readCaseStudyLabel={messages.work.readCaseStudy}
+          viewProjectLabel={messages.work.viewProject}
         />
       ))}
     </Column>

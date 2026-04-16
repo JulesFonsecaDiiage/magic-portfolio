@@ -1,6 +1,8 @@
 import { getPosts } from "@/utils/utils";
 import { Grid } from "@once-ui-system/core";
 import Post from "./Post";
+import { getRequestLocale } from "@/i18n/request";
+import { Locale } from "@/i18n/config";
 
 interface PostsProps {
   range?: [number] | [number, number];
@@ -8,15 +10,18 @@ interface PostsProps {
   thumbnail?: boolean;
   direction?: "row" | "column";
   exclude?: string[];
+  locale?: Locale;
 }
 
-export function Posts({
+export async function Posts({
   range,
   columns = "1",
   thumbnail = false,
   exclude = [],
   direction,
+  locale: localeProp,
 }: PostsProps) {
+  const locale = localeProp ?? (await getRequestLocale());
   let allBlogs = getPosts(["src", "app", "blog", "posts"]);
 
   // Exclude by slug (exact match)
@@ -37,7 +42,13 @@ export function Posts({
       {displayedBlogs.length > 0 && (
         <Grid columns={columns} s={{ columns: 1 }} fillWidth marginBottom="40" gap="16">
           {displayedBlogs.map((post) => (
-            <Post key={post.slug} post={post} thumbnail={thumbnail} direction={direction} />
+            <Post
+              key={post.slug}
+              post={post}
+              thumbnail={thumbnail}
+              direction={direction}
+              locale={locale}
+            />
           ))}
         </Grid>
       )}

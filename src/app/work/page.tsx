@@ -1,18 +1,30 @@
 import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
-import { baseURL, about, person, work } from "@/resources";
+import { baseURL } from "@/resources";
 import { Projects } from "@/components/work/Projects";
+import { buildAlternates, getLocalizedPath, getRequestLocale } from "@/i18n/request";
+import type { Metadata } from "next";
+import { getLocalizedContent } from "@/i18n/content";
+import { Locale } from "@/i18n/config";
 
-export async function generateMetadata() {
-  return Meta.generate({
-    title: work.title,
-    description: work.description,
-    baseURL: baseURL,
-    image: `/api/og/generate?title=${encodeURIComponent(work.title)}`,
-    path: work.path,
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  const { work } = getLocalizedContent(locale);
+  const metadata = Meta.generate({
+      title: work.title,
+      description: work.description,
+      baseURL: baseURL,
+      image: `/api/og/generate?title=${encodeURIComponent(work.title)}`,
+      path: getLocalizedPath(work.path, locale),
   });
+
+  return { ...metadata, alternates: buildAlternates(work.path) };
 }
 
-export default function Work() {
+type WorkPageProps = { locale?: Locale };
+
+export default async ({locale: localeProp}: WorkPageProps = {}) => {
+  const locale = localeProp ?? (await getRequestLocale());
+  const { work, person, about } = getLocalizedContent(locale);
   return (
     <Column maxWidth="m" paddingTop="24">
       <Schema
@@ -31,7 +43,7 @@ export default function Work() {
       <Heading marginBottom="l" variant="heading-strong-xl" align="center">
         {work.title}
       </Heading>
-      <Projects />
+      <Projects locale={locale} />
     </Column>
   );
 }

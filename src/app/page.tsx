@@ -11,22 +11,37 @@ import {
   Meta,
   Line,
 } from "@once-ui-system/core";
-import { home, about, person, baseURL, routes } from "@/resources";
+import { baseURL, routes } from "@/resources";
 import { Mailchimp } from "@/components";
 import { Projects } from "@/components/work/Projects";
 import { Posts } from "@/components/blog/Posts";
+import { buildAlternates, getLocalizedPath, getRequestLocale } from "@/i18n/request";
+import { getMessages } from "@/i18n/messages";
+import type { Metadata } from "next";
+import { getLocalizedContent } from "@/i18n/content";
+import { Locale } from "@/i18n/config";
 
-export async function generateMetadata() {
-  return Meta.generate({
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  const { home } = getLocalizedContent(locale);
+  const metadata = Meta.generate({
     title: home.title,
     description: home.description,
     baseURL: baseURL,
-    path: home.path,
+    path: getLocalizedPath(home.path, locale),
     image: home.image,
   });
+
+  return { ...metadata, alternates: buildAlternates(home.path) };
 }
 
-export default function Home() {
+type HomeProps = { locale?: Locale };
+
+export default async ({locale: localeProp}: HomeProps = {}) => {
+  const locale = localeProp ?? (await getRequestLocale());
+  const messages = getMessages(locale);
+  const { home, about, person } = getLocalizedContent(locale);
+
   return (
     <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
       <Schema
@@ -101,7 +116,7 @@ export default function Home() {
         </Column>
       </Column>
       <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
+        <Projects range={[1, 1]} locale={locale} />
       </RevealFx>
       {routes["/blog"] && (
         <Column fillWidth gap="24" marginBottom="l">
@@ -111,11 +126,11 @@ export default function Home() {
           <Row fillWidth gap="24" marginTop="40" s={{ direction: "column" }}>
             <Row flex={1} paddingLeft="l" paddingTop="24">
               <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                Latest from the blog
+                {messages.blog.latest}
               </Heading>
             </Row>
             <Row flex={3} paddingX="20">
-              <Posts range={[1, 2]} columns="2" />
+              <Posts range={[1, 2]} columns="2" locale={locale} />
             </Row>
           </Row>
           <Row fillWidth paddingLeft="64" horizontal="end">
@@ -123,7 +138,7 @@ export default function Home() {
           </Row>
         </Column>
       )}
-      <Projects range={[2]} />
+      <Projects range={[2]} locale={locale} />
       <Mailchimp />
     </Column>
   );

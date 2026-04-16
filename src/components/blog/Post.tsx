@@ -3,19 +3,22 @@
 import { Card, Column, Media, Row, Avatar, Text } from "@once-ui-system/core";
 import { formatDate } from "@/utils/formatDate";
 import { person } from "@/resources";
+import { Locale } from "@/i18n/config";
+import { toLocalePath } from "@/i18n/utils";
 
 interface PostProps {
   post: any;
   thumbnail: boolean;
   direction?: "row" | "column";
+  locale: Locale;
 }
 
-export default function Post({ post, thumbnail, direction }: PostProps) {
+export default function Post({ post, thumbnail, direction, locale }: PostProps) {
   return (
     <Card
       fillWidth
       key={post.slug}
-      href={`/blog/${post.slug}`}
+      href={toLocalePath(`/blog/${post.slug}`, locale)}
       transition="micro-medium"
       direction={direction}
       border="transparent"

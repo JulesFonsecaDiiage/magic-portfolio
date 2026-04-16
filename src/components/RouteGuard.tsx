@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { routes, protectedRoutes } from "@/resources";
 import { Flex, Spinner, Button, Heading, Column, PasswordInput } from "@once-ui-system/core";
 import NotFound from "@/app/not-found";
+import { defaultLocale } from "@/i18n/config";
+import { getMessages } from "@/i18n/messages";
+import { getLocaleFromPath, stripLocaleFromPath } from "@/i18n/utils";
 
 interface RouteGuardProps {
   children: React.ReactNode;
@@ -12,6 +15,8 @@ interface RouteGuardProps {
 
 const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
   const pathname = usePathname();
+  const currentLocale = getLocaleFromPath(pathname || "") ?? defaultLocale;
+  const messages = getMessages(currentLocale);
   const [isRouteEnabled, setIsRouteEnabled] = useState(false);
   const [isPasswordRequired, setIsPasswordRequired] = useState(false);
   const [password, setPassword] = useState("");
@@ -29,13 +34,15 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       const checkRouteEnabled = () => {
         if (!pathname) return false;
 
-        if (pathname in routes) {
-          return routes[pathname as keyof typeof routes];
+        const normalizedPathname = stripLocaleFromPath(pathname);
+
+        if (normalizedPathname in routes) {
+          return routes[normalizedPathname as keyof typeof routes];
         }
 
         const dynamicRoutes = ["/blog", "/work"] as const;
         for (const route of dynamicRoutes) {
-          if (pathname?.startsWith(route) && routes[route]) {
+          if (normalizedPathname.startsWith(route) && routes[route]) {
             return true;
           }
         }
@@ -46,7 +53,9 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       const routeEnabled = checkRouteEnabled();
       setIsRouteEnabled(routeEnabled);
 
-      if (protectedRoutes[pathname as keyof typeof protectedRoutes]) {
+      const normalizedPathname = stripLocaleFromPath(pathname || "/");
+
+      if (protectedRoutes[normalizedPathname as keyof typeof protectedRoutes]) {
         setIsPasswordRequired(true);
 
         const response = await fetch("/api/check-auth");
@@ -72,7 +81,7 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       setIsAuthenticated(true);
       setError(undefined);
     } else {
-      setError("Incorrect password");
+      setError(messages.routeGuard.incorrectPassword);
     }
   };
 
@@ -92,17 +101,17 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
     return (
       <Column paddingY="128" maxWidth={24} gap="24" center>
         <Heading align="center" wrap="balance">
-          This page is password protected
+          {messages.routeGuard.passwordProtected}
         </Heading>
         <Column fillWidth gap="8" horizontal="center">
           <PasswordInput
             id="password"
-            label="Password"
+            label={messages.routeGuard.passwordLabel}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             errorMessage={error}
           />
-          <Button onClick={handlePasswordSubmit}>Submit</Button>
+          <Button onClick={handlePasswordSubmit}>{messages.routeGuard.submit}</Button>
         </Column>
       </Column>
     );

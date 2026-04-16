@@ -14,17 +14,25 @@ import {
   SpacingToken,
 } from "@once-ui-system/core";
 import { Footer, Header, RouteGuard, Providers } from "@/components";
-import { baseURL, effects, fonts, style, dataStyle, home } from "@/resources";
+import { baseURL, effects, fonts, style, dataStyle } from "@/resources";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { buildAlternates, getLocalizedPath, getRequestLocale } from "@/i18n/request";
+import type { Metadata } from "next";
+import { getLocalizedContent } from "@/i18n/content";
 
-export async function generateMetadata() {
-  return Meta.generate({
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  const { home } = getLocalizedContent(locale);
+  const localizedPath = getLocalizedPath(home.path, locale);
+  const metadata = await Meta.generate({
     title: home.title,
     description: home.description,
     baseURL: baseURL,
-    path: home.path,
+    path: localizedPath,
     image: home.image,
   });
+
+  return { ...metadata, alternates: buildAlternates(home.path) };
 }
 
 export default async function RootLayout({
@@ -32,11 +40,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getRequestLocale();
+
   return (
-    <Flex
+      <Flex
       suppressHydrationWarning
       as="html"
-      lang="en"
+        lang={locale}
       fillWidth
       className={classNames(
         fonts.heading.variable,
