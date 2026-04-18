@@ -48,7 +48,7 @@ export default function Post({ post, thumbnail, direction, locale }: PostProps) 
               <Text variant="label-default-s">{person.name}</Text>
             </Row>
             <Text variant="body-default-xs" onBackground="neutral-weak">
-              {formatDate(post.metadata.publishedAt, false)}
+              {formatDate(post.metadata.publishedAt, false, locale)}
             </Text>
           </Row>
           <Text variant="heading-strong-l" wrap="balance">

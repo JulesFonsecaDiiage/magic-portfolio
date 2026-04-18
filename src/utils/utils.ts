@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { defaultLocale, Locale } from "@/i18n/config";
 
 type Team = {
   name: string;
@@ -23,8 +24,12 @@ type Metadata = {
 
 import { notFound } from "next/navigation";
 
-function getMDXFiles(dir: string) {
+function getMDXFiles(dir: string, allowMissing = false) {
   if (!fs.existsSync(dir)) {
+    if (allowMissing) {
+      return [];
+    }
+
     notFound();
   }
 
@@ -54,8 +59,8 @@ function readMDXFile(filePath: string) {
   return { metadata, content };
 }
 
-function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
+function getMDXData(dir: string, allowMissing = false) {
+  const mdxFiles = getMDXFiles(dir, allowMissing);
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
     const slug = path.basename(file, path.extname(file));
@@ -72,3 +77,28 @@ export function getPosts(customPath = ["", "", "", ""]) {
   const postsDir = path.join(process.cwd(), ...customPath);
   return getMDXData(postsDir);
 }
+
+export function getLocalizedPosts(customPath: string[], locale: Locale) {
+  const postsDir = path.join(process.cwd(), ...customPath);
+  const localeDir = path.join(postsDir, locale);
+  const fallbackDir = path.join(postsDir, defaultLocale);
+
+  const hasLocalizedDirectories = fs.existsSync(localeDir) || fs.existsSync(fallbackDir);
+
+  if (!hasLocalizedDirectories) {
+    return getMDXData(postsDir);
+  }
+
+  const primaryPosts = getMDXData(localeDir, true);
+  const fallbackPosts = locale === defaultLocale ? [] : getMDXData(fallbackDir, true);
+  const mergedPosts = [...primaryPosts];
+
+  for (const fallbackPost of fallbackPosts) {
+    if (!mergedPosts.some((post) => post.slug === fallbackPost.slug)) {
+      mergedPosts.push(fallbackPost);
+    }
+  }
+
+  return mergedPosts;
+}
+

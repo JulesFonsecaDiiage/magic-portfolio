@@ -1,4 +1,6 @@
-export function formatDate(date: string, includeRelative = false) {
+import {defaultLocale} from "@/i18n/config";
+
+export function formatDate(date: string, includeRelative = false, locale?: string) {
   const currentDate = new Date();
 
   if (!date.includes("T")) {
@@ -22,9 +24,8 @@ export function formatDate(date: string, includeRelative = false) {
     formattedDate = "Today";
   }
 
-  const fullDate = targetDate.toLocaleString("en-us", {
+  const fullDate = targetDate.toLocaleString(locale || defaultLocale, {
     month: "long",
-    day: "numeric",
     year: "numeric",
   });
 

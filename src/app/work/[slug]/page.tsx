@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPosts } from "@/utils/utils";
+import { getLocalizedPosts } from "@/utils/utils";
 import {
   Meta,
   Schema,
@@ -19,14 +19,20 @@ import { Metadata } from "next";
 import { Projects } from "@/components/work/Projects";
 import { buildAlternates, getLocalizedPath, getRequestLocale } from "@/i18n/request";
 import { getMessages } from "@/i18n/messages";
-import { Locale } from "@/i18n/config";
+import { Locale, locales } from "@/i18n/config";
 import { getLocalizedContent } from "@/i18n/content";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const posts = getPosts(["src", "app", "work", "projects"]);
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  const allSlugs = new Set<string>();
+
+  for (const locale of locales) {
+    const posts = getLocalizedPosts(["src", "app", "work", "projects"], locale);
+    for (const post of posts) {
+      allSlugs.add(post.slug);
+    }
+  }
+
+  return Array.from(allSlugs).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -43,7 +49,7 @@ export async function generateMetadata({
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  const posts = getPosts(["src", "app", "work", "projects"]);
+  const posts = getLocalizedPosts(["src", "app", "work", "projects"], locale);
   let post = posts.find((post) => post.slug === slugPath);
 
   if (!post) return {};
@@ -74,7 +80,9 @@ export default async ({
     ? routeParams.slug.join("/")
     : routeParams.slug || "";
 
-  let post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slugPath);
+  let post = getLocalizedPosts(["src", "app", "work", "projects"], locale).find(
+    (post) => post.slug === slugPath,
+  );
 
   if (!post) {
     notFound();
@@ -109,7 +117,7 @@ export default async ({
           <Text variant="label-strong-m">{messages.nav.projects}</Text>
         </SmartLink>
         <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="12">
-          {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
+          {post.metadata.publishedAt && formatDate(post.metadata.publishedAt, false, locale)}
         </Text>
         <Heading variant="display-strong-m">{post.metadata.title}</Heading>
       </Column>

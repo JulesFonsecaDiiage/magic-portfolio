@@ -1,4 +1,4 @@
-import { getPosts } from "@/utils/utils";
+import { getLocalizedPosts } from "@/utils/utils";
 import { Column } from "@once-ui-system/core";
 import { ProjectCard } from "@/components";
 import { getRequestLocale } from "@/i18n/request";
@@ -16,7 +16,7 @@ export async function Projects({ range, exclude, locale: localeProp }: ProjectsP
   const locale = localeProp ?? (await getRequestLocale());
   const messages = getMessages(locale);
 
-  let allProjects = getPosts(["src", "app", "work", "projects"]);
+  let allProjects = getLocalizedPosts(["src", "app", "work", "projects"], locale);
 
   // Exclude by slug (exact match)
   if (exclude && exclude.length > 0) {
