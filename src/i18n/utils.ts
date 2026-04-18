@@ -28,7 +28,11 @@ export function stripLocaleFromPath(pathname: string): string {
   }
 
   const withoutLocale = normalized.slice(locale.length + 1);
-  return withoutLocale ? withoutLocale : "/";
+  if (!withoutLocale) {
+    return "/";
+  }
+
+  return withoutLocale.startsWith("/") ? withoutLocale : `/${withoutLocale}`;
 }
 
 export function withLocale(pathname: string, locale: Locale): string {

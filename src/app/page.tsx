@@ -21,8 +21,8 @@ import type { Metadata } from "next";
 import { getLocalizedContent } from "@/i18n/content";
 import { Locale } from "@/i18n/config";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getRequestLocale();
+export async function generateMetadata({ locale: localeProp }: { locale?: Locale } = {}): Promise<Metadata> {
+  const locale = localeProp ?? (await getRequestLocale());
   const { home } = getLocalizedContent(locale);
   const metadata = Meta.generate({
     title: home.title,
@@ -109,7 +109,7 @@ export default async ({locale: localeProp}: HomeProps = {}) => {
                     size="m"
                   />
                 )}
-                {about.title}
+                {about.label}
               </Row>
             </Button>
           </RevealFx>

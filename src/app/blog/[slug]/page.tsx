@@ -13,7 +13,7 @@ import {
   Media,
   Line,
 } from "@once-ui-system/core";
-import { baseURL, about, blog, person } from "@/resources";
+import { baseURL } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
 import { getPosts } from "@/utils/utils";
 import { Metadata } from "next";
@@ -23,6 +23,7 @@ import { ShareSection } from "@/components/blog/ShareSection";
 import { buildAlternates, getLocalizedPath, getRequestLocale } from "@/i18n/request";
 import { getMessages } from "@/i18n/messages";
 import { Locale } from "@/i18n/config";
+import { getLocalizedContent } from "@/i18n/content";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(["src", "app", "blog", "posts"]);
@@ -33,10 +34,13 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 
 export async function generateMetadata({
   params,
+  locale: localeProp,
 }: {
   params: Promise<{ slug: string | string[] }>;
+  locale?: Locale;
 }): Promise<Metadata> {
-  const locale = await getRequestLocale();
+  const locale = localeProp ?? (await getRequestLocale());
+  const { blog } = getLocalizedContent(locale);
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug)
     ? routeParams.slug.join("/")
@@ -66,6 +70,7 @@ type BlogPostPageProps = {
 export default async ({params, locale: localeProp}: BlogPostPageProps) => {
   const locale = localeProp ?? (await getRequestLocale());
   const messages = getMessages(locale);
+  const { about, blog, person } = getLocalizedContent(locale);
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug)
     ? routeParams.slug.join("/")

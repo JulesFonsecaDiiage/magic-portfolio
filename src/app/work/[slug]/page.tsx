@@ -12,7 +12,7 @@ import {
   Row,
   Line,
 } from "@once-ui-system/core";
-import { baseURL, about, person, work } from "@/resources";
+import { baseURL } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
 import { ScrollToHash, CustomMDX } from "@/components";
 import { Metadata } from "next";
@@ -20,6 +20,7 @@ import { Projects } from "@/components/work/Projects";
 import { buildAlternates, getLocalizedPath, getRequestLocale } from "@/i18n/request";
 import { getMessages } from "@/i18n/messages";
 import { Locale } from "@/i18n/config";
+import { getLocalizedContent } from "@/i18n/content";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(["src", "app", "work", "projects"]);
@@ -30,10 +31,13 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 
 export async function generateMetadata({
   params,
+  locale: localeProp,
 }: {
   params: Promise<{ slug: string | string[] }>;
+  locale?: Locale;
 }): Promise<Metadata> {
-  const locale = await getRequestLocale();
+  const locale = localeProp ?? (await getRequestLocale());
+  const { work } = getLocalizedContent(locale);
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug)
     ? routeParams.slug.join("/")
@@ -64,6 +68,7 @@ export default async ({
 }) => {
   const locale = localeProp ?? (await getRequestLocale());
   const messages = getMessages(locale);
+  const { about, person, work } = getLocalizedContent(locale);
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug)
     ? routeParams.slug.join("/")

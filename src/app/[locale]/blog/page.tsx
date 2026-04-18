@@ -3,8 +3,18 @@ import { Locale, isLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generateRootMetadata();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isLocale(locale)) {
+    notFound();
+  }
+
+  return generateRootMetadata({ locale: locale as Locale });
 }
 
 export default async function LocalizedBlogPage({

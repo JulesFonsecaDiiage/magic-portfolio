@@ -7,9 +7,18 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata(args: {
-  params: Promise<{ slug: string | string[] }>;
+  params: Promise<{ locale: string; slug: string | string[] }>;
 }): Promise<Metadata> {
-  return generateRootMetadata(args);
+  const routeParams = await args.params;
+
+  if (!isLocale(routeParams.locale)) {
+    notFound();
+  }
+
+  return generateRootMetadata({
+    params: Promise.resolve({ slug: routeParams.slug }),
+    locale: routeParams.locale as Locale,
+  });
 }
 
 export async function generateStaticParams(): Promise<Array<{ locale: string; slug: string }>> {
