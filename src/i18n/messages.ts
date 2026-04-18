@@ -44,7 +44,7 @@ const messages: Record<Locale, Messages> = {
     },
     work: {
       related: "Projets liés",
-      readCaseStudy: "Lire l'étude de cas",
+      readCaseStudy: "Découvrir le projet",
       viewProject: "Voir le projet",
     },
     routeGuard: {
@@ -70,7 +70,7 @@ const messages: Record<Locale, Messages> = {
     },
     work: {
       related: "Related projects",
-      readCaseStudy: "Read case study",
+      readCaseStudy: "View project",
       viewProject: "View project",
     },
     routeGuard: {

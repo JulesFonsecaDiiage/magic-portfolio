@@ -101,13 +101,13 @@ const about: About = {
         role: "Software Engineer Apprentice",
         achievements: [
           <>
-            Contributed to multiple client products (Carrefour Pro, CEBFC, Laruche) through features, bug fixes, and test coverage.
+            Contributed to multiple client projects (ERP, WMS, Intranet...) through features, bug fixes, and test coverage.
           </>,
           <>
-            Worked as the main developer on a custom WMS for Laruche Logistique, delivered as a V1 in 6 weeks with one teammate.
+            Worked as the main developer on a custom WMS for Laruche Logistique, delivered a V1 in 6 weeks with one colleague.
           </>,
           <>
-            Delivered code in an agile setup with reviews, sprint rituals, and collaboration with business stakeholders.
+            Delivered code in an agile setup.
           </>,
         ],
         tags: [
@@ -131,7 +131,7 @@ const about: About = {
             Contributed to a custom multiplatform app used by city halls to publish information to citizens.
           </>,
           <>
-            Applied unit testing, agile practices, and code reviews in day-to-day delivery.
+            Started projects from scratch, set up architecture, with a fast learning on the technologies used.
           </>,
         ],
         tags: [
@@ -174,7 +174,8 @@ const about: About = {
       },
       {
         name: "H. Parriat High School - French Baccalaureate",
-        description: <>2018 - 2021, Montceau-les-Mines (France). Specialties: Physics-Chemistry and Engineering Science.</>,
+        description: <>2018 - 2021, Montceau-les-Mines (France). <b><i>Certificate of Excellence.</i></b>
+          <br/>Specialties: Physics-Chemistry and Engineering Science.</>,
       },
       {
         name: "Stanford University / DeepLearning.AI - ML Specialization (Online)",
@@ -203,25 +204,27 @@ const about: About = {
         images: [],
       },
       {
-        title: "API engineering",
+        title: "API / Back-end",
         description: (
-          <>Designing and implementing APIs and business services with C# and ASP.NET in team-based projects.</>
+          <>Designing and implementing APIs and business services with .NET, Express.js or PHP in team-based projects.</>
         ),
         tags: [
           {name: ".NET", icon: "dotnet"},
-          {name: "ASP.NET"},
+          {name: "Express.js", icon: "express"},
+          {name: "PHP", icon: "php"},
           {name: "MySQL", icon: "mysql"},
+          {name: "PostgreSQL", icon: "postgresql"},
         ],
         images: [],
       },
       {
         title: "Architecture, quality, and delivery",
         description: (
-          <>Applying clean architecture, DI, testing strategies (UT/IT/E2E), CI/CD practices, and agile delivery workflows.</>
+          <>Applying clean architecture / MVC / MVI, DI, micro-services, testing strategies (UT/IT/E2E), CI/CD practices, and agile delivery workflows in Gitlab, Github, or Azure DevOps environments.</>
         ),
         tags: [
           {name: "Docker", icon: "docker"},
-          {name: "Clean Architecture"},
+          {name: "Clean Architecture / MVC / MVI"},
           {name: "Unit Testing"},
           {name: "CI/CD"},
           {name: "Agile"},
@@ -237,6 +240,18 @@ const about: About = {
           {name: "Python", icon: "python"},
           {name: "Machine Learning"},
           {name: "Generative AI"},
+        ],
+        images: [],
+      },
+      {
+        title: "Mobile / Cross-platform development",
+        description: (
+            <>Building mobile and cross-platform applications with Kotlin Multiplatform (KMP), React Native and Ionic.</>
+        ),
+        tags: [
+            {name: "Kotlin", icon: "kotlin"},
+            {name: "React Native", icon: "react"},
+            {name: "Ionic", icon: "ionic"},
         ],
         images: [],
       },

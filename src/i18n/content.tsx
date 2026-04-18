@@ -53,18 +53,18 @@ export function getLocalizedContent(locale: Locale) {
               ...baseAbout.work.experiences[0],
               role: "Ingénieur logiciel en alternance",
               achievements: [
-                <>Participation active à plusieurs produits clients (Carrefour Pro, CEBFC, Laruche) avec livraison de fonctionnalités, correctifs et couverture de tests.</>,
+                <>Participation active à plusieurs projets clients (ERP, WMS, Intranet...) avec livraison de fonctionnalités, correctifs et couverture de tests.</>,
                 <>Développeur principal sur un WMS sur mesure pour Laruche Logistique, avec une V1 livrée en 6 semaines en binôme.</>,
-                <>Travail dans un cadre agile : revues de code, rituels de sprint et collaboration étroite avec les équipes métier.</>,
+                <>Travail dans un cadre agile.</>,
               ],
             },
             {
               ...baseAbout.work.experiences[1],
               role: "Ingénieur logiciel en alternance",
               achievements: [
-                <>Développement de fonctionnalités internes et clients avec Express.js, Node.js, PHP, Vue.js, Angular et Ionic.</>,
+                <>Développement de fonctionnalités internes et clientes avec Express.js, Node.js, PHP, Vue.js, Angular et Ionic.</>,
                 <>Contribution à une application multiplateforme utilisée par des mairies pour diffuser de l'information aux citoyens.</>,
-                <>Mise en pratique quotidienne des tests unitaires, des méthodes agiles et des revues de code.</>,
+                <>Départ de projets from scratch, mise en place de l'architecture, avec une montée en compétence rapide sur les technologies utilisées.</>,
               ],
             },
             {
@@ -91,7 +91,8 @@ export function getLocalizedContent(locale: Locale) {
             },
             {
               name: "Lycée Henri Parriat - Baccalauréat général",
-              description: <>2018 - 2021, Montceau-les-Mines (France). Spécialités: Physique-Chimie et Sciences de l'Ingénieur.</>,
+              description: <>2018 - 2021, Montceau-les-Mines (France). <b><i>Diplôme d'Excellence.</i></b>
+                <br/> Spécialités: Physique-Chimie et Sciences de l'Ingénieur.</>,
             },
             {
               name: "Stanford University / DeepLearning.AI - ML Specialization (Online)",
@@ -110,18 +111,23 @@ export function getLocalizedContent(locale: Locale) {
             },
             {
               ...baseAbout.technical.skills[1],
-              title: "Ingénierie API",
-              description: <>Conception et implémentation d'API et de services métier avec C# et ASP.NET dans des projets en équipe.</>,
+              title: "API / Back-end",
+              description: <>Conception et implémentation d'API et de services métier en .NET, Express.js ou PHP dans des projets en équipe.</>,
             },
             {
               ...baseAbout.technical.skills[2],
               title: "Architecture, qualité et livraison",
-              description: <>Mise en œuvre de principes de clean architecture, de DI, de stratégies de test (UT/IT/E2E), de CI/CD et de delivery agile.</>,
+              description: <>Mise en œuvre de principes de clean architecture / MVC / MVI, de micro-services, de DI, de stratégies de test (UT/IT/E2E), de CI/CD dans Gitlab, Github et Azure DevOps.</>,
             },
             {
               ...baseAbout.technical.skills[3],
               title: "Intelligence artificielle et machine learning",
               description: <>Exploration de cas d'usage IA via cours et projets, avec un intérêt particulier pour l'IA générative et les fondamentaux du machine learning.</>,
+            },
+            {
+              ...baseAbout.technical.skills[4],
+              title: "Développement mobile et cross-platform",
+              description: <>Conception d'applications mobiles avec Kotlin Multiplatform (KMP), React Native et Ionic.</>,
             },
           ],
         },
