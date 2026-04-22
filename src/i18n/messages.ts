@@ -36,6 +36,7 @@ type Messages = {
     messageLabel: string;
     submit: string;
     success: string;
+    error: string;
     emailError: string;
     messageError: string;
   };
@@ -78,6 +79,7 @@ const messages: Record<Locale, Messages> = {
       messageLabel: "Message",
       submit: "Envoyer",
       success: "Votre message a été envoyé avec succès !",
+      error: "Une erreur est survenue lors de l'envoi de votre message.",
       emailError: "Merci de renseigner un email valide.",
       messageError: "Merci d'ajouter un peu de contexte dans votre message.",
     },
@@ -118,6 +120,7 @@ const messages: Record<Locale, Messages> = {
       messageLabel: "Message",
       submit: "Send",
       success: "Your message has been sent successfully!",
+      error: "An error occurred while sending your message.",
       emailError: "Please provide a valid email address.",
       messageError: "Please add a bit more context in your message.",
     },
