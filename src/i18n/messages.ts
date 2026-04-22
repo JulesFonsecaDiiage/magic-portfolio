@@ -8,6 +8,7 @@ type Messages = {
     blog: string;
     projects: string;
     gallery: string;
+    contact: string;
   };
   blog: {
     latest: string;
@@ -25,6 +26,19 @@ type Messages = {
     submit: string;
     incorrectPassword: string;
   };
+  contact: {
+    title: string;
+    description: string;
+    intro: string;
+    formTitle: string;
+    nameLabel: string;
+    emailLabel: string;
+    messageLabel: string;
+    submit: string;
+    success: string;
+    emailError: string;
+    messageError: string;
+  };
 };
 
 const messages: Record<Locale, Messages> = {
@@ -36,6 +50,7 @@ const messages: Record<Locale, Messages> = {
       blog: "Blog",
       projects: "Projets",
       gallery: "Galerie",
+      contact: "Contact",
     },
     blog: {
       latest: "Derniers articles",
@@ -53,6 +68,19 @@ const messages: Record<Locale, Messages> = {
       submit: "Valider",
       incorrectPassword: "Mot de passe incorrect",
     },
+    contact: {
+      title: "Contact - Jules Fonseca",
+      description: "Contactez-moi pour toute demande, opportunité ou simplement pour dire bonjour !",
+      intro: "N'hésitez pas à me contacter pour toute question ou opportunité professionnelle.",
+      formTitle: "Contactez-moi",
+      nameLabel: "Nom",
+      emailLabel: "Email",
+      messageLabel: "Message",
+      submit: "Envoyer",
+      success: "Votre message a été envoyé avec succès !",
+      emailError: "Merci de renseigner un email valide.",
+      messageError: "Merci d'ajouter un peu de contexte dans votre message.",
+    },
   },
   en: {
     languageName: "English",
@@ -62,6 +90,7 @@ const messages: Record<Locale, Messages> = {
       blog: "Blog",
       projects: "Projects",
       gallery: "Gallery",
+      contact: "Contact",
     },
     blog: {
       latest: "Latest from the blog",
@@ -78,6 +107,19 @@ const messages: Record<Locale, Messages> = {
       passwordLabel: "Password",
       submit: "Submit",
       incorrectPassword: "Incorrect password",
+    },
+    contact: {
+      title: "Contact - Jules Fonseca",
+      description: "Feel free to reach out for any questions, opportunities, or just to say hello!",
+      intro: "Feel free to reach out for any questions or professional opportunities.",
+      formTitle: "Get in touch",
+      nameLabel: "Name",
+      emailLabel: "Email",
+      messageLabel: "Message",
+      submit: "Send",
+      success: "Your message has been sent successfully!",
+      emailError: "Please provide a valid email address.",
+      messageError: "Please add a bit more context in your message.",
     },
   },
 };

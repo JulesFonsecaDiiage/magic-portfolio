@@ -12,7 +12,7 @@ import {
   Line,
 } from "@once-ui-system/core";
 import { baseURL, routes } from "@/resources";
-import { Mailchimp } from "@/components";
+import { ContactForm } from "@/components";
 import { Projects } from "@/components/work/Projects";
 import { Posts } from "@/components/blog/Posts";
 import { buildAlternates, getLocalizedPath, getRequestLocale } from "@/i18n/request";
@@ -139,7 +139,7 @@ export default async ({locale: localeProp}: HomeProps = {}) => {
         </Column>
       )}
       <Projects range={[2]} locale={locale} />
-      <Mailchimp />
+      <ContactForm locale={locale} />
     </Column>
   );
 }

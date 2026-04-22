@@ -146,6 +146,25 @@ export const Header = () => {
                   </Row>
                 </>
               )}
+              {routes["/contact"] && (
+                <>
+                  <Row s={{ hide: true }}>
+                    <ToggleButton
+                      prefixIcon="email"
+                      href={getLocalizedRoute("/contact")}
+                      label={messages.nav.contact}
+                      selected={isSelected("/contact")}
+                    />
+                  </Row>
+                  <Row hide s={{ hide: false }}>
+                    <ToggleButton
+                      prefixIcon="email"
+                      href={getLocalizedRoute("/contact")}
+                      selected={isSelected("/contact")}
+                    />
+                  </Row>
+                </>
+              )}
               {routes["/blog"] && (
                 <>
                   <Row s={{ hide: true }}>
