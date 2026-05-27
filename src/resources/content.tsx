@@ -46,20 +46,18 @@ const home: Home = {
   featured: {
     display: false,
     title: (
-      <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
-        <Line background="brand-alpha-strong" vert height="20" />
+      <Row>
+        <strong className="mx-4">Download my</strong>
         <Text marginRight="4" onBackground="brand-medium">
-          Featured work
+          Resume
         </Text>
       </Row>
     ),
-    href: "/work/laruche-logistique-custom-wms-v1",
+    href: "/documents/resume.pdf",
   },
   subline: (
     <>
-      Hi, I'm Jules. I build business software with a strong product mindset. <br />
-      My experience covers client delivery, architecture, testing, and agile teamwork.
+      Hi, I'm Jules. As a software engineer, I build business software with a strong product mindset.
     </>
   ),
 };
@@ -85,9 +83,9 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        I am a French software engineer based in Dijon, currently finishing a Master's degree in software engineering.
-        <br />
-        I have close to 4 years of professional experience across product features, bug fixing, testing, and end-to-end delivery.
+        Based in France with a global outlook, I am a software engineer combining academic rigor with nearly 4 years of experience.
+        <br /><br />
+        Soon to graduate with a Master's degree in Software Architecture and Development, I am particularly drawn to projects that blend technical challenges with a strong product focus, allowing me to contribute to both the codebase and the business strategy.
       </>
     ),
   },
@@ -121,7 +119,7 @@ const about: About = {
       },
       {
         company: "Ideal Solutions",
-        timeframe: "Sep 2022 - Aug 2023",
+        timeframe: "Sep. 2022 - Aug. 2023",
         role: "Software Engineer Apprentice",
         achievements: [
           <>
@@ -224,7 +222,10 @@ const about: About = {
         ),
         tags: [
           {name: "Docker", icon: "docker"},
+          {name: "RabbitMq", icon: "rabbitMq"},
           {name: "Clean Architecture / MVC / MVI"},
+          {name: "Micro-services"},
+          {name: "CQRS"},
           {name: "Unit Testing"},
           {name: "CI/CD"},
           {name: "Agile"},
@@ -240,6 +241,7 @@ const about: About = {
           {name: "Python", icon: "python"},
           {name: "Machine Learning"},
           {name: "Generative AI"},
+          {name: "Azure Foundry"}
         ],
         images: [],
       },
@@ -251,6 +253,7 @@ const about: About = {
         tags: [
             {name: "Kotlin", icon: "kotlin"},
             {name: "React Native", icon: "react"},
+            {name: "Expo", icon: "expo"},
             {name: "Ionic", icon: "ionic"},
         ],
         images: [],

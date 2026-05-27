@@ -23,9 +23,7 @@ export function getLocalizedContent(locale: Locale) {
         headline: <>Du besoin métier au code en production</>,
         subline: (
           <>
-            Salut, moi c'est Jules. Je conçois des logiciels métier avec une vraie culture produit fonctionnel.
-            <br /><br />
-            Mon expérience va de la livraison de features, à l'architecture, les tests et le travail en équipe agile.
+            Bonjour, je suis Jules. Ingénieur logiciel, je développe des logiciels métiers avec une vraie culture produit fonctionnel.
           </>
         ),
       },
@@ -39,9 +37,9 @@ export function getLocalizedContent(locale: Locale) {
           title: "Introduction",
           description: (
             <>
-              Je suis un ingénieur logiciel français basé à Dijon, actuellement en fin de Master en ingénierie logicielle.
-              <br />
-              J'ai près de 4 ans d'expérience dans le développement de fonctionnalités, la correction de bugs, les tests et la livraison de projets en équipes agiles.
+              Basé en France mais ouvert au monde entier, je suis un ingénieur logiciel alliant rigueur académique et près de 4 ans d'expérience.
+              <br/><br/>
+              Bientôt titulaire d'un Master en Architecture et Développement logiciel, j'aime particulièrement les projets qui combinent des défis techniques avec une forte orientation produit, où je peux contribuer à la fois au code et à la réflexion métier.
             </>
           ),
         },
@@ -51,6 +49,7 @@ export function getLocalizedContent(locale: Locale) {
           experiences: [
             {
               ...baseAbout.work.experiences[0],
+              timeframe: "2023 - Aujourd'hui",
               role: "Ingénieur logiciel en alternance",
               achievements: [
                 <>Participation active à plusieurs projets clients (ERP, WMS, Intranet...) avec livraison de fonctionnalités, correctifs et couverture de tests.</>,
@@ -60,6 +59,7 @@ export function getLocalizedContent(locale: Locale) {
             },
             {
               ...baseAbout.work.experiences[1],
+              timeframe: "Sept. 2022 - Août 2023",
               role: "Ingénieur logiciel en alternance",
               achievements: [
                 <>Développement de fonctionnalités internes et clientes avec Express.js, Node.js, PHP, Vue.js, Angular et Ionic.</>,
@@ -69,6 +69,7 @@ export function getLocalizedContent(locale: Locale) {
             },
             {
               ...baseAbout.work.experiences[2],
+              timeframe: "2022 (6 semaines)",
               role: "Stagiaire ingénieur logiciel",
               achievements: [
                 <>Premier stage en ingénierie logicielle avec livraison de fonctionnalités orientées client dans des contextes de production.</>,
