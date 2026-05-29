@@ -1,0 +1,96 @@
+---
+title: "Shadow of the Abyss, dungeon crawler"
+publishedAt: "2025-12-01"
+summary: "Multiplayer web dungeon crawler built on a microservices architecture, developed as a team project during the final year of a Master's program."
+images:
+  - "/images/projects/sota/sota-logo.png"
+team:
+  - name: "Jules Fonseca"
+    role: "Developer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/jules-fonseca/"
+  - name: "DIIAGE"
+    role: "Academic supervision"
+    avatar: "/images/diiage-logo.png"
+    linkedIn: "https://www.linkedin.com/company/diiage/"
+---
+
+## Context
+
+Shadow of the Abyss is a multiplayer web dungeon crawler built as a team project during the final year of a Master's program. The project enforced strict constraints: a full microservices architecture, availability SLO (99%), gameplay latency (p95 ≤ 500 ms), automated CI/CD pipeline, and a formalized testing strategy.
+
+The goal was to design and deliver a realistic distributed system end to end, applying industry practices across the full chain: architecture, development, infrastructure, and quality.
+
+## Product
+
+Shadow of the Abyss is a dark fantasy RPG playable in the browser. Features covered:
+
+- Procedurally generated dungeon exploration
+- Turn-based combat with character, skill, and item management
+- Quest system with progression and rewards
+- In-game item shop with full-text search
+- Account management and authentication via Keycloak (OIDC)
+- Bilingual interface (FR / EN), bestiary and lore pages server-side rendered
+
+## Architecture
+
+The system is split into seven independent microservices, each with its own CI/CD pipeline and Kubernetes manifests:
+
+| Service               | Responsibility                                     | Database              |
+|-----------------------|----------------------------------------------------|-----------------------|
+| **GameCore**          | Reference data (monsters, character classes, lore) | MongoDB               |
+| **CharacterService**  | Characters, skills, equipment                      | MongoDB               |
+| **GameSession**       | Game sessions, combat state                        | PostgreSQL            |
+| **QuestService**      | Quests and progression (event-driven, idempotent)  | PostgreSQL + RabbitMQ |
+| **StoreService**      | Shop and item search                               | Meilisearch           |
+| **UserService**       | User accounts                                      | PostgreSQL            |
+| **DungeonGeneration** | Procedural dungeon generation                      | —                     |
+
+Synchronous communication flows through a **Traefik** API Gateway. Asynchronous events (e.g. `CombatCompleted`) are published on **RabbitMQ** and consumed with idempotent processing.
+
+## Tech stack
+
+**Frontend**
+- Nuxt 4 + Vue 3 (TypeScript), Pinia, Tailwind CSS, Nuxt UI
+- SSR for public pages (landing, bestiary, lore), SPA for in-game
+- Keycloak JS for client-side authentication
+- ECharts + v-network-graph for visualizations
+- Cypress + Cucumber (BDD) for E2E tests
+
+**Backend**
+- ASP.NET Core (.NET 9) — Clean Architecture per service
+- CQRS + MediatR (GameCore)
+- Entity Framework Core (PostgreSQL services)
+- Official MongoDB driver (MongoDB services)
+
+**Infrastructure**
+- Kubernetes — dedicated manifests per service (deployments, services, secrets, configmaps)
+- Docker Compose for local development
+- Traefik as API Gateway (prefix-based routing)
+- Keycloak 25 for authentication (OIDC)
+- RabbitMQ for asynchronous messaging
+- Meilisearch for full-text search
+
+**CI/CD & quality**
+- Azure Pipelines — one pipeline per service (build, tests, Docker push)
+- SonarCloud — quality gate, coverage, vulnerabilities
+- Husky + commitlint, ESLint + Prettier, branch naming validation
+- ADRs (Architecture Decision Records) documenting key architectural choices
+
+## Team practices
+
+- Trunk-based development with short-lived branches and systematic PRs
+- SLOs defined upfront (availability, p95 latency, error rate)
+- Unit tests per service + Cypress/Cucumber E2E tests on the frontend
+- Idempotent event processing (QuestService) to ensure distributed consistency
+- Living documentation: DAT, ADRs, test strategy, security policy
+
+## Challenges and learnings
+
+Coordinating seven independently developed microservices as a team required strong discipline around API contracts and inter-service communication. Managing heterogeneous databases (MongoDB, PostgreSQL, Meilisearch) matched to each service's needs was a hands-on introduction to polyglot persistence.
+
+Implementing idempotent RabbitMQ event processing in the QuestService was a concrete exercise in distributed resilience.
+
+## Outcome
+
+Shadow of the Abyss is a formative project on distributed architecture. It forces engagement with real-world problems: eventual consistency, fault tolerance, observability, and teamwork at scale across a large distributed system.
