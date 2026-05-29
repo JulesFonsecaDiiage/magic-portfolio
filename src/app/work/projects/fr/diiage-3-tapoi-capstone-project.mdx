@@ -1,0 +1,77 @@
+---
+title: "DIIAGE 3 — TAPOI, projet de fin de cycle"
+publishedAt: "2026-02-15"
+summary: "Application mobile de découverte et réservation de voyages organisés, conçue de bout en bout dans le cadre du projet fil rouge de 3e année DIIAGE."
+images:
+  - "/images/projects/tapoi/tapoi-logo.jpg"
+team:
+  - name: "Jules Fonseca"
+    role: "Conception et développement"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/jules-fonseca/"
+  - name: "DIIAGE"
+    role: "Encadrement et formation"
+    avatar: "/images/diiage-logo.png"
+    linkedIn: "https://www.linkedin.com/company/diiage/"
+---
+
+## Contexte
+
+TAPOI est le projet fil rouge de ma troisième année à DIIAGE. L'objectif était de concevoir et livrer un produit complet de bout en bout : définition du besoin, conception de l'expérience, choix d'architecture et d'implémentation.
+
+## Produit
+
+TAPOI est une application mobile qui permet de découvrir et de réserver des voyages organisés par d'autres utilisateurs. Les principales fonctionnalités livrées :
+
+- Onboarding et gestion des préférences utilisateur (centres d'intérêt)
+- Exploration de voyages avec filtres, destinations et recommandations personnalisées
+- Système de réservation avec gestion des places disponibles
+- Messagerie intégrée entre voyageurs
+- Avis et évaluations des voyages
+- Gestion des favoris et des recherches récentes
+- Know your customer (KYC) avec vérification d'identité et documents
+
+## Stack technique
+
+**Mobile**
+- React Native + Expo (TypeScript), Expo Router (file-based routing)
+- React 19 avec le React Compiler activé
+- React Native Reanimated pour les animations
+- Stream Chat SDK pour la messagerie temps réel
+
+**API**
+- ASP.NET Core en Clean Architecture (Domain / Application / Infrastructure)
+- Pattern CQRS avec MediatR
+- Entity Framework Core avec migrations
+- JWT pour l'authentification, service de vérification par email (SMTP)
+- Stream Chat côté serveur pour la gestion des canaux
+
+**Infrastructure & qualité**
+- Azure Pipelines : build, analyse SonarQube, Docker build/push vers Harbor
+- Gitleaks pour la détection de secrets dans le code
+- Signature des images Docker avec Cosign
+- Versioning sémantique automatique via le pipeline
+
+**Outillage**
+- Husky + commitlint (commits conventionnels)
+- ESLint + Prettier + lint-staged
+- Validation du nommage de branches
+
+## Mon rôle
+
+- Co-conception du produit : définition des parcours utilisateur, priorisation des fonctionnalités.
+- Gestion de projet : découpage du travail, planification des sprints, coordination avec les parties prenantes.
+- Développement full-stack : implémentation de l'application mobile et de l'API.
+- Architecture applicatif : structure modulaire en Clean Architecture, séparation des couches, intégration des services tiers (Stream Chat, SMTP).
+- Mise en place de la chaîne CI/CD : pipeline Azure Pipelines, conteneurisation Docker, analyse statique SonarQube.
+- Qualité du code : configuration de l'outillage (Husky, commitlint, ESLint), revues de code systématiques.
+
+## Difficultés et apprentissages
+
+Tenir une cohérence produit sur la durée tout en itérant rapidement a été le défi principal. Cela m'a appris à documenter les décisions d'architecture au fil du projet et à arbitrer les compromis avec une vraie logique produit plutôt que technique.
+
+La mise en place du pipeline CI/CD complet — du build à la signature d'image — a également été un apprentissage structurant sur les pratiques de delivery en conditions réelles.
+
+## Résultat
+
+TAPOI est l'un des projets les plus structurants de mon parcours au DIIAGE. Il consolide des compétences transverses essentielles : vision produit, exécution technique full-stack, architecture logicielle et travail en équipe.

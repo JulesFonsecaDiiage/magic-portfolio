@@ -1,0 +1,77 @@
+---
+title: "DIIAGE Year 3 — TAPOI Capstone Project"
+publishedAt: "2026-02-15"
+summary: "Mobile app for discovering and booking curated trips, built end to end as the DIIAGE third-year capstone project."
+images:
+  - "/images/projects/tapoi/tapoi-logo.jpg"
+team:
+  - name: "Jules Fonseca"
+    role: "Design and development"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/jules-fonseca/"
+  - name: "DIIAGE"
+    role: "Academic supervision"
+    avatar: "/images/diiage-logo.png"
+    linkedIn: "https://www.linkedin.com/company/diiage/"
+---
+
+## Context
+
+TAPOI is the long-term capstone of my third year at DIIAGE. The goal was to design and deliver a complete product end to end: problem definition, UX design, architectural decisions, and implementation.
+
+## Product
+
+TAPOI is a mobile application for discovering and booking trips organized by other users. Key features delivered:
+
+- Onboarding and user preference management (interests)
+- Trip exploration with filters, destinations, and personalized recommendations
+- Booking system with available spots management
+- Integrated real-time messaging between travelers
+- Trip reviews and ratings
+- Favorites and recent searches
+- Know your customer (KYC) with identity verification and document management
+
+## Tech stack
+
+**Mobile**
+- React Native + Expo (TypeScript), Expo Router (file-based routing)
+- React 19 with React Compiler enabled
+- React Native Reanimated for animations
+- Stream Chat SDK for real-time messaging
+
+**API**
+- ASP.NET Core in Clean Architecture (Domain / Application / Infrastructure)
+- CQRS pattern with MediatR
+- Entity Framework Core with migrations
+- JWT authentication, email verification service (SMTP)
+- Stream Chat server-side for channel management
+
+**Infrastructure & quality**
+- Azure Pipelines: build, SonarQube analysis, Docker build/push to Harbor
+- Gitleaks for secret detection in source code
+- Docker image signing with Cosign
+- Automatic semantic versioning through the pipeline
+
+**Tooling**
+- Husky + commitlint (conventional commits)
+- ESLint + Prettier + lint-staged
+- Branch naming validation
+
+## My role
+
+- Co-product design: user flow definition, feature prioritization.
+- Project management: task breakdown, sprint planning, communication with stakeholders.
+- Full-stack development: mobile application and API implementation.
+- Application architecture: Clean Architecture modular structure, layer separation, third-party service integration (Stream Chat, SMTP).
+- CI/CD pipeline setup: Azure Pipelines, Docker containerization, SonarQube static analysis.
+- Code quality: tooling configuration (Husky, commitlint, ESLint), systematic code reviews.
+
+## Challenges and learnings
+
+Maintaining product coherence over time while iterating quickly was the main challenge. It taught me to document architectural decisions throughout the project and to resolve trade-offs with a product mindset rather than a purely technical one.
+
+Setting up the full CI/CD pipeline — from build to image signing — was also a key learning on professional delivery practices.
+
+## Outcome
+
+TAPOI is one of the most formative project of my DIIAGE journey. It consolidates key cross-functional skills: product vision, full-stack technical execution, software architecture, and teamwork.
