@@ -1,0 +1,61 @@
+---
+title: "M'GPT, multi-model AI chat platform"
+publishedAt: "2026-02-01"
+summary: "Multi-model AI chat platform with dynamic agent selection."
+images:
+  - "/images/projects/mgpt/exakis-x-gpt.png"
+team:
+  - name: "Jules Fonseca"
+    role: "Developer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/jules-fonseca/"
+  - name: "DIIAGE"
+    role: "Academic supervision"
+    avatar: "/images/diiage-logo.png"
+    linkedIn: "https://www.linkedin.com/company/diiage/"
+  - name: "Exakis Nelite"
+    role: "Customer"
+    avatar: "/images/exakis-logo.png"
+    linkedIn: "https://www.linkedin.com/company/exakis-nelite/"
+---
+
+## Context
+
+M'GPT is a team project during the final year of a Master's program: a chat platform that lets users interact with multiple AI models and agents through Azure AI Foundry and host in Azure Cloud. The goal was to build a clean architecture around current AI SDKs while shipping a real mobile application on both Android and iOS from a single shared codebase.
+
+## Product
+
+M'GPT lets authenticated users chat with different AI agents, each linked to a configurable model and system prompt:
+
+- Agent catalog with dynamic AI target selection
+- Chat interface with streamed responses
+- Persisted conversation history
+- Per-agent system prompt management
+- Authentication (OAuth 2.0 / OIDC)
+- MCP server creation
+
+## Tech stack
+
+**Mobile**
+- Kotlin Multiplatform (KMP) + Compose Multiplatform
+- Targets Android and iOS from a shared codebase
+- MVVM architecture, Compose navigation
+
+**API**
+- ASP.NET Core (.NET 10) in Clean Architecture (Domain / Application / Infrastructure)
+- Azure AI Foundry — integrated via the native OpenAI SDK (compatible endpoint)
+- Multi-model agent system with dynamic AI target resolution (AiCatalog)
+- CosmosDB for conversation persistence
+- GDPR compliance: no user content logged, call traceability (duration, tokens)
+
+**Infrastructure**
+- Azure Pipelines — CI/CD pipeline to Azure App Service
+- Secured variable groups for secrets management
+
+## Key learnings
+
+This project gave me hands-on experience with current AI SDKs (Azure AI Foundry, OpenAI), building a flexible agent catalog system, and shipping a real cross-platform mobile app with Kotlin Multiplatform.
+
+## Outcome
+
+M'GPT reflects real-world enterprise AI patterns: model abstraction, configurable agents, and cross-platform mobile interfaces. It gave me a strong foundation in AI backend integration and KMP for mobile development.

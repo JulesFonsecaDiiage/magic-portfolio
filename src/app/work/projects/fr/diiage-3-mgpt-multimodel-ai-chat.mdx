@@ -1,0 +1,61 @@
+---
+title: "M'GPT, plateforme de chat IA multi-modèles"
+publishedAt: "2026-02-01"
+summary: "Application de chat IA multi-modèles avec sélection d'agents dynamique."
+images:
+  - "/images/projects/mgpt/exakis-x-gpt.png"
+team:
+  - name: "Jules Fonseca"
+    role: "Développeur"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/jules-fonseca/"
+  - name: "DIIAGE"
+    role: "Encadrement et formation"
+    avatar: "/images/diiage-logo.png"
+    linkedIn: "https://www.linkedin.com/company/diiage/"
+  - name: "Exakis Nelite"
+    role: "Client"
+    avatar: "/images/exakis-logo.png"
+    linkedIn: "https://www.linkedin.com/company/exakis-nelite/"
+---
+
+## Contexte
+
+M'GPT est un projet de dernière année de master : une plateforme de chat permettant d'interagir avec plusieurs modèles et agents IA via Azure AI Foundry et hébergé sur Azure. L'objectif était de concevoir une architecture propre autour des SDK IA actuels tout en livrant une application mobile réelle sur Android et iOS depuis une base de code partagée.
+
+## Produit
+
+M'GPT permet à un utilisateur authentifié de converser avec différents agents IA, chacun associé à un modèle et un système de prompts configurables :
+
+- Catalogue d'agents disponibles avec sélection dynamique du modèle cible
+- Interface de chat avec streaming des réponses
+- Historique des conversations persisté
+- Gestion des system prompts par agent
+- Authentification (OAuth 2.0 / OIDC)
+- Création d'un serveur MCP
+
+## Stack technique
+
+**Mobile**
+- Kotlin Multiplatform (KMP) + Compose Multiplatform
+- Cible Android et iOS depuis une base de code partagée
+- Architecture MVVM, navigation Compose
+
+**API**
+- ASP.NET Core (.NET 10) en Clean Architecture (Domain / Application / Infrastructure)
+- Azure AI Foundry — intégration via le SDK OpenAI natif (endpoint compatible)
+- Agent multi-modèles avec résolution dynamique de la cible IA (AiCatalog)
+- CosmosDB pour la persistance des conversations
+- Conformité RGPD : aucun contenu utilisateur logué, traçabilité des appels (durée, tokens)
+
+**Infrastructure**
+- Azure Pipelines — pipeline CI/CD vers Azure App Service
+- Configuration par groupes de variables sécurisés
+
+## Apprentissages clés
+
+Ce projet m'a permis de travailler concrètement avec les SDK IA actuels (Azure AI Foundry, OpenAI), d'implémenter un système de catalogue d'agents flexible, et de livrer une application mobile multiplateforme réelle avec Kotlin Multiplatform.
+
+## Résultat
+
+M'GPT est un projet représentatif des usages actuels de l'IA en entreprise : abstraction du modèle sous-jacent, agents configurables et interfaces mobiles cross-platform. Il m'a donné une base solide sur les intégrations IA côté backend et sur KMP côté mobile.
