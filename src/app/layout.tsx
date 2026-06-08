@@ -16,6 +16,7 @@ import {
 import { Footer, Header, RouteGuard, Providers } from "@/components";
 import { baseURL, effects, fonts, style, dataStyle } from "@/resources";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import { buildAlternates, getLocalizedPath, getRequestLocale } from "@/i18n/request";
 import type { Metadata } from "next";
 import { getLocalizedContent } from "@/i18n/content";
@@ -175,6 +176,7 @@ export default async function RootLayout({
           </Flex>
           <Footer />
           <SpeedInsights />
+          <Analytics />
         </Column>
       </Providers>
     </Flex>
